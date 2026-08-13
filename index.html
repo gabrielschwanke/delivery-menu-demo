@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Sabor Express | Cardápio Online</title>
+  <meta name="description" content="Cardápio online da Sabor Express. Monte seu pedido e finalize rapidamente pelo WhatsApp." />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/custom-select.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a href="#topo" class="brand" aria-label="Ir para o topo">
+        <img src="assets/img/logo.png" alt="Logo da Sabor Express" class="brand__logo" />
+      </a>
+
+      <nav class="nav" aria-label="Menu principal">
+        <a href="#cardapio">Cardápio</a>
+        <a href="#pedido">Pedidos</a>
+        <a href="#informacoes">Informações</a>
+      </nav>
+
+  </header>
+
+  <main id="topo">
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <span class="badge">🍕 Delivery rápido • Atendimento via WhatsApp</span>
+          <a href="#pedido" class="hero-promo hero-promo--inside">
+            <video class="banner-mobile" autoplay muted loop playsinline>
+              <source src="assets/video/hamburguer.mp4" type="video/mp4">
+            </video>
+            <div class="hero-banner__overlay">
+              <h2>Rapidez e praticidade</h2>
+              <p>na hora de fazer seu pedido</p>
+            </div>
+          </a>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#cardapio">Ver cardápio</a>
+            <a class="btn btn--secondary" href="#pedido">Montar pedido</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="cardapio">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="section__title">Cardápio</h2>
+          <p class="section__subtitle">
+            Escolha seus sabores favoritos, adicione ao pedido e finalize pelo WhatsApp.
+          </p>
+        </header>
+
+        <div class="catalog">
+          <div class="catalog__content">
+            <div class="filters" id="filters">
+
+              <button class="filter-btn is-active" data-category="hamburguer" type="button">
+                Hambúrgueres 
+              </button>
+
+              <button class="filter-btn" data-category="salgadas" type="button" style="display: none;">
+                Pizzas Salgadas
+              </button>
+              <button class="filter-btn" data-category="doces" type="button" style="display: none;">
+                Pizzas Doces
+              </button>
+              <button class="filter-btn" data-category="esfihas-salgadas" type="button" style="display: none;">
+                Esfihas Salgadas
+              </button>
+
+              <button class="filter-btn" data-category="esfihas-doces" type="button" style="display: none;">
+                Esfihas Doces
+              </button>
+
+              <button class="filter-btn" data-category="lanches" type="button">
+                Lanches
+              </button>
+
+              <button class="filter-btn" data-category="porções" type="button">
+                Porções
+              </button>
+
+              <button class="filter-btn" data-category="combo" type="button">
+                Combos
+              </button>
+
+              <button class="filter-btn" data-category="bebidas" type="button">
+                Bebidas
+              </button>
+            </div>
+
+            <div class="menu-grid" id="menuGrid" aria-live="polite"></div>
+          </div>
+
+          <aside class="order-box" id="pedido">
+            <header class="order-box__header">
+              <div>
+                <h3>Seu pedido</h3>
+                <p>Preencha seus dados, revise os itens e finalize no WhatsApp.</p>
+              </div>
+              <span class="cart-badge">
+                <strong id="cartCount">0</strong> item(ns)
+              </span>
+            </header>
+
+            <form id="orderForm" class="order-form" onsubmit="return false;">
+              <div class="form-group">
+                <label for="customerName">Seu nome</label>
+                <input class="input" id="customerName" type="text" placeholder="Ex.: Maria" />
+              </div>
+
+              <div class="form-group" id="addressGroup">
+                <label for="customerAddress">Bairro / endereço</label>
+                <input class="input" id="customerAddress" type="text" placeholder="Ex.: Centro, Rua X, nº 123" />
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="orderType">Tipo do pedido</label>
+
+                  <div class="custom-select order-type-select" data-custom-select>
+                    <input type="hidden" class="custom-select__native" id="orderType" value="Delivery" />
+
+                    <button type="button" class="custom-select__trigger" aria-label="Selecionar tipo do pedido">
+                      <span class="custom-select__label">Delivery</span>
+                      <span class="custom-select__arrow">⌄</span>
+                    </button>
+
+                    <div class="custom-select__dropdown">
+                      <button type="button" class="custom-select__option is-selected" data-value="Delivery" data-label="Delivery" aria-selected="true">
+                        Delivery
+                      </button>
+
+                      <button type="button" class="custom-select__option" data-value="Retirada" data-label="Retirada" aria-selected="false">
+                        Retirada
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <label for="paymentMethod">Forma de pagamento</label>
+
+                  <div class="custom-select payment-method-select" data-custom-select>
+                    <input type="hidden" class="custom-select__native" id="paymentMethod" value="Pix" />
+
+                    <button type="button" class="custom-select__trigger" aria-label="Selecionar forma de pagamento">
+                      <span class="custom-select__label">Pix</span>
+                      <span class="custom-select__arrow">⌄</span>
+                    </button>
+
+                    <div class="custom-select__dropdown">
+                      <button type="button" class="custom-select__option is-selected" data-value="Pix" data-label="Pix" aria-selected="true">
+                        Pix
+                      </button>
+
+                      <button type="button" class="custom-select__option" data-value="Dinheiro" data-label="Dinheiro" aria-selected="false">
+                        Dinheiro
+                      </button>
+
+                      <button type="button" class="custom-select__option" data-value="Cartão" data-label="Cartão" aria-selected="false">
+                        Cartão
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="cash-change-group hidden" id="cashChangeGroup">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="needChange">Precisa de troco?</label>
+
+                    <div class="custom-select need-change-select" data-custom-select>
+                      <input type="hidden" class="custom-select__native" id="needChange" value="Não" />
+
+                      <button type="button" class="custom-select__trigger" aria-label="Selecionar necessidade de troco">
+                        <span class="custom-select__label">Não</span>
+                        <span class="custom-select__arrow">⌄</span>
+                      </button>
+
+                      <div class="custom-select__dropdown">
+                        <button type="button" class="custom-select__option is-selected" data-value="Não" data-label="Não" aria-selected="true">
+                          Não
+                        </button>
+
+                        <button type="button" class="custom-select__option" data-value="Sim" data-label="Sim" aria-selected="false">
+                          Sim
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group hidden" id="changeAmountGroup">
+                    <label for="changeAmount">Troco para quanto?</label>
+                    <input class="input" id="changeAmount" type="text" placeholder="Ex.: 100" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="orderNotes">Observações</label>
+                <textarea class="textarea" id="orderNotes" placeholder="Ex.: Quero minha pizza sem cebola.."></textarea>
+              </div>
+            </form>
+
+            <div class="cart-items" id="cartItems" aria-live="polite"></div>
+
+            <div class="summary">
+              <div class="summary__row">
+                <span>Subtotal</span>
+                <strong id="orderSubtotal">R$ 0,00</strong>
+              </div>
+
+              <div class="summary__row hidden" id="deliveryFeeRow">
+                <span>Taxa de entrega</span>
+                <strong id="deliveryFeeValue">R$ 0,00</strong>
+              </div>
+
+              <div class="summary__row summary__row--total">
+                <span>Total</span>
+                <strong id="orderTotal">R$ 0,00</strong>
+              </div>
+            </div>
+
+            <div class="order-actions">
+              <button class="btn btn--whatsapp" id="checkoutBtn" type="button">
+                Finalizar no WhatsApp
+              </button>
+              <button class="btn btn--secondary" id="clearCartBtn" type="button">
+                Limpar pedido
+              </button>
+            </div>
+          </aside>
+        </div>
+        <div class="menu-back-button">
+          <a class="btn btn--primary" href="#cardapio">Voltar ao cardápio</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="informacoes">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="section__title">Informações</h2>
+          </p>
+        </header>
+
+        <div class="info-grid">
+
+          <article class="info-card">
+            <strong>Horário de atendimento</strong>
+            <p data-business-hours>De Segunda a Segunda, das 19h30 às 23h30.</p>
+          </article>
+
+          <article class="info-card">
+            <strong>Endereço</strong>
+            <p data-address>Rua Exemplo, 123, Bairro Modelo, Sua Cidade</p>
+          </article>
+
+          <article class="info-card">
+            <strong>WhatsApp</strong>
+            <p data-whatsapp-display> (00) 00000-0000</p>
+          </article>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="mobile-bar">
+    <div class="mobile-bar__content">
+      <span><strong id="mobileCartCount">0</strong> item(ns)</span>
+      <strong id="mobileTotal">R$ 0,00</strong>
+    </div>
+    <a href="#pedido" class="btn btn--primary">Revisar pedido</a>
+  </div>
+
+  <a class="floating-whatsapp" id="floatingWhatsApp" href="#" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp" title="Falar no WhatsApp">
+    ✆
+  </a>
+
+  <div class="toast" id="toast" aria-live="polite" aria-atomic="true"></div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="currentYear"></span> <span data-store-name>Sabor Express</span> — Cardápio on-line.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/custom-select.js"></script>
+  <script src="assets/js/script.js"></script>
+</body>
+
+</html>
